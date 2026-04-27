@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--
-	TASK:
-	Before looking at this page follow the instructions on Notion
-	to create you own working example. Just use this as a reference!
 
-	-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Leaflet Map Basics</title>
@@ -27,12 +22,12 @@
 			top:0px; 
 			width:300px; 
 			right:0px;
-			background-color:white; 
+			background-color:rgb(255, 255, 255); 
 			height:100vh; 
-			z-index:700; /*change to 10000 to hide attribution*/
+			z-index:1000; 
 		}
 		#sidebar div{
-			padding:10px;
+			padding:100px;
 		}
     </style>
 </head>
@@ -44,13 +39,13 @@
 	// INITIALISE THE MAP
 
 	// Create a new map object and set a default starting point
-	const start = [51.424808, -0.566745]
-	const startZoom = 20; // how zoomed in
+	const start = [51.426226, -0.563472]
+	const startZoom = 16; // how zoomed in
 	const map = L.map('map').setView(start, startZoom);
 
 	// Make the map run run with openstreetmap
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
+		maxZoom: 50,
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
