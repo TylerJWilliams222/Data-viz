@@ -29,6 +29,19 @@
 		#sidebar div{
 			padding:100px;
 		}
+		.leaflet-popup-content {
+			margin: 12px 16px;
+		}
+		.vending-popup img {
+			display: block;
+			max-width: 240px;
+			max-height: 180px;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+			border-radius: 5px;
+			margin-top: 10px;
+		}
     </style>
 </head>
 <body>
@@ -38,10 +51,23 @@
     
 	// INITIALISE THE MAP
 
+	// Define map bounds - NW, NE, SW, SE coordinates
+	const bounds = [
+		[51.4176, -0.5855], // Southwest corner (lat, lng)
+		[51.4328, -0.5395]  // Northeast corner (lat, lng)
+	];
+
 	// Create a new map object and set a default starting point
-	const start = [51.426226, -0.563472]
-	const startZoom = 16; // how zoomed in
-	const map = L.map('map').setView(start, startZoom);
+	const start = [51.4252, -0.5625]
+	const startZoom = 15; // how zoomed in
+	const map = L.map('map', {
+		maxBounds: bounds,
+		maxBoundsViscosity: 1.0, // Prevents panning outside bounds
+		minZoom: 15 // Restrict zoom out to level 15
+	}).setView(start, startZoom);
+
+	// Set the maximum bounds to crop the map
+	map.setMaxBounds(bounds);
 
 	// Make the map run run with openstreetmap
 	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -60,6 +86,9 @@
 			 .setContent(`${e.latlng.toString()}`)
 			 .openOn(map);
 	}
+	popup.options.autoPan = true;
+	popup.options.keepInView = true;
+	popup.options.autoPanPadding = [60, 60];
 
 	// CREATE A POPUP SIDEBAR
 	let sidebar = document.getElementById("sidebar");
@@ -86,7 +115,17 @@
     .then(response => response.json())
     .then(data => {
         data.forEach(location => {
-            L.marker([location.lat, location.lng]).addTo(map).bindPopup(location.popup);
+            let popupContent = `<div><p>${location.popup}</p>`;
+            if (location.image) {
+				popupContent += `<img src="leaflet/images/${location.image}" alt="${location.popup}">`;
+            }
+            popupContent += `</div>`;
+			L.marker([location.lat, location.lng]).addTo(map).bindPopup(popupContent, {
+				autoPan: true,
+				keepInView: true,
+				autoPanPadding: [60, 60],
+				className: 'vending-popup'
+			});
         });
     })
     .catch(error => console.error('Error loading markers:', error));
