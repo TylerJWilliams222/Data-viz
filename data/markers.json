@@ -1,19 +1,19 @@
 [
- { "lat":51.424768, "lng":-0.566815, "popup": "Vending machine Founders central", "image": "Founders Building.png" },
- { "lat":51.425494, "lng":-0.565174, "popup": "Vending machine Emily Davison x2 (2nd + 3rd floor)", "image": "Emily Davison.png" },
- { "lat":51.425879, "lng":-0.566139, "popup": "Vending machine Windsor", "image": "Windsor Building.png" },
- { "lat":51.426745, "lng":-0.56343, "popup": "Vending machine Tolansky Lab", "image": "Tolansky Building.png" },
- { "lat":51.428969, "lng":-0.562234, "popup": "Vending machine Katherine Worth Building", "image": null },
- { "lat":51.426334, "lng":-0.562513, "popup": "Vending machine Bourne (5th Floor)", "image": "Bourne Building.png" },
- { "lat":51.425922, "lng":-0.561311, "popup": "Vending machine John Bowyer Building", "image": "John Bowyer Building.png" },
- { "lat":51.425748, "lng":-0.561059, "popup": "Vending machine Shilling", "image": "Shilling Building.png" },
- { "lat":51.42482, "lng":-0.56022 , "popup": "Vending Machine Tuke Laundry room", "image": "Tuke Laundry.png" },
- { "lat":51.424661, "lng":-0.561655 , "popup": "Vending Machine Hub Basement", "image": null },
- { "lat":51.423163, "lng": -0.559324 , "popup": " Vending Machine Sports Center", "image": "Sports center.png" },
- { "lat":51.423082, "lng":  -0.560984 , "popup": " Vending Machine Gower Student Accommodation", "image": null },
- { "lat":51.425947, "lng":  -0.569106 , "popup": " Vending Machine Wettons (Room One)", "image": "Wettons.png" },
- { "lat":51.426875, "lng": -0.567086 , "popup": " Vending Machine George Eliot Laundry Room", "image": "George Eliot Laundry.png" },
- { "lat":51.426539, "lng": -0.565434 , "popup": " Vending Machine Moor Building", "image": "Moore Building.png" }
+ { "lat":51.424768, "lng":-0.566815, "popup": "Vending machine Founders central - PUBLIC ACCSESS" , "image": "Founders Building.png" },
+ { "lat":51.425494, "lng":-0.565174, "popup": "Vending machine Emily Davison x2 (2nd + 3rd floor) - PUBLIC ACCSESS", "image": "Emily Davison.png" },
+ { "lat":51.425879, "lng":-0.566139, "popup": "Vending machine Windsor - ALL STUDENTS WORKING HOURS", "image": "Windsor Building.png" },
+ { "lat":51.426745, "lng":-0.56343, "popup": "Vending machine Tolansky Lab - SCHOOL OF ENGINEERING, PHYSICAL, AND MATHEMATICAL SCIENCE ", "image": "Tolansky Building.png" },
+ { "lat":51.428969, "lng":-0.562234, "popup": "Vending machine Katherine Worth Building - SCHOOL OF PERFORMING AND DIGITAL ARTS", "image": null },
+ { "lat":51.426334, "lng":-0.562513, "popup": "Vending machine Bourne (5th Floor) - SCHOOL OF LIFE SCIENCES AND THE ENVIRONMENT ", "image": "Bourne Building.png" },
+ { "lat":51.425922, "lng":-0.561311, "popup": "Vending machine John Bowyer Building - SCHOOL OF ENGINEERING, PHYSICAL, AND MATHEMATICAL SCIENCE", "image": "John Bowyer Building.png" },
+ { "lat":51.425748, "lng":-0.561059, "popup": "Vending machine Shilling - SCHOOL OF ENGINEERING, PHYSICAL, AND MATHEMATICAL SCIENCE", "image": "Shilling Building.png" },
+ { "lat":51.42482, "lng":-0.56022 , "popup": "Vending Machine Tuke Laundry room - TUKE, BUTTLER AND WILLIAMSON STUDENTS", "image": "Tuke Laundry.png" },
+ { "lat":51.424661, "lng":-0.561655 , "popup": "Vending Machine Hub (Basement) - STUDENT WORKING HOURS ", "image": null },
+ { "lat":51.423163, "lng": -0.559324 , "popup": " Vending Machine Sports Center - PUBLIC ACCSESS", "image": "Sports center.png" },
+ { "lat":51.423082, "lng":  -0.560984 , "popup": " Vending Machine Gower Student Accommodation - GOWER AND WEDDERBURN STUDENTS", "image": null },
+ { "lat":51.425947, "lng":  -0.569106 , "popup": " Vending Machine Wettons (Room One) - SCHOOL OF PERFORMING ARTS ", "image": "Wettons.png" },
+ { "lat":51.426875, "lng": -0.567086 , "popup": " Vending Machine George Eliot Laundry Room - GEORGE ELIOT STUDENTS", "image": "George Eliot Laundry.png" },
+ { "lat":51.426539, "lng": -0.565434 , "popup": " Vending Machine Moor Building - SCHOOL OF BUISNESS", "image": "Moore Building.png" }
 ]
 
 
