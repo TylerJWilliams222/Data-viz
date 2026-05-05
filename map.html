@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-<body>
-<p1>In this webpage you will find a Royal Holloway University of London campus map hosted by 'open Street map' with the locations of vending machines on campus marked by clickable interactive pins displaying details of who can access and an image of the building's name plaque for further visu-alisation. 
-The ease of access for this information makes having chronic illnesses such as Type one Diabetes considerably easier as keeping control of blood sugar levels sometimes require the consumption of sugary substances quickly. As much as these individuals usually carry their own sugar on their persons, sometimes mistakes happen such as forgetting their sugar or even needing to consume exponentially more than usual, there is a range of reasons why vending machines can become life savers!
-</p1>
-
-	</body>
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Leaflet Map Basics</title>
+    <title>Leaflet Map - Vending Machines</title>
     <link rel="stylesheet" href="leaflet/leaflet@1.9.4.css"/>
     <script src="leaflet/leaflet@1.9.4.js"></script>
     <style>
-		html, body, #map, 
-		.leaflet-container {
-			height: 100%;
-			width: 100%;
-			max-width: 100%;
-			max-height: 100%;
-            margin:0px;
-		}
-		p1 {
-			display: block;
-			color: #701ae8; 
-			font-size: 1rem;
-			background-color: rgb(255, 255, 255);
-			padding: 5px;
-			font-family: Arial, Helvetica, sans-serif;
-		}
+        /* ====== MAP STYLING ====== */
+        html, body, #map, 
+        .leaflet-container {
+            height: 100%;
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
-      
-	
-		.leaflet-popup-content {
-			margin: 12px 16px;
-		}
-		.vending-popup img {
-			display: block;
-			max-width: 240px;
-			max-height: 180px;
-			width: auto;
-			height: auto;
-			object-fit: contain;
-			border-radius: 5px;
-			margin-top: 10px;
-		}
+        /* ====== POPUP STYLING ====== */
+        .leaflet-popup-content {
+            margin: 12px 16px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2c3e50;
+        }
+
+        .leaflet-popup-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 500;
+            color: #1f3c88;
+        }
+
+        .vending-popup img {
+            display: block;
+            max-width: 240px;
+            max-height: 180px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-top: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -55,86 +56,83 @@ The ease of access for this information makes having chronic illnesses such as T
     <div id="sidebar"></div>
     <script>
     
-	// INITIALISE THE MAP
+        // INITIALISE THE MAP
 
-	// Define map bounds - NW, NE, SW, SE coordinates
-	const bounds = [
-		[51.4176, -0.5855], // Southwest corner (lat, lng)
-		[51.4328, -0.5395]  // Northeast corner (lat, lng)
-	];
+        // Define map bounds - NW, NE, SW, SE coordinates
+        const bounds = [
+            [51.4176, -0.5855], // Southwest corner (lat, lng)
+            [51.4328, -0.5395]  // Northeast corner (lat, lng)
+        ];
 
-	// Create a new map object and set a default starting point
-	const start = [51.4252, -0.5625]
-	const startZoom = 15; // how zoomed in
-	const map = L.map('map', {
-		maxBounds: bounds,
-		maxBoundsViscosity: 1.0, // Prevents panning outside bounds
-		minZoom: 15 // Restrict zoom out to level 15
-	}).setView(start, startZoom);
+        // Create a new map object and set a default starting point
+        const start = [51.4252, -0.5625]
+        const startZoom = 15; // how zoomed in
+        const map = L.map('map', {
+            maxBounds: bounds,
+            maxBoundsViscosity: 1.0, // Prevents panning outside bounds
+            minZoom: 15 // Restrict zoom out to level 15
+        }).setView(start, startZoom);
 
-	// Set the maximum bounds to crop the map
-	map.setMaxBounds(bounds);
+        // Set the maximum bounds to crop the map
+        map.setMaxBounds(bounds);
 
-	// Make the map run run with openstreetmap
-	L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 50,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+        // Make the map run run with openstreetmap
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 50,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
+        // ADD A CLICK EVENT TO THE MAP
+        const popup = L.popup();
+        map.on('click', MapClick);
+        function MapClick(e) {
+            popup.setLatLng(e.latlng)
+                 .setContent(`${e.latlng.toString()}`)
+                 .openOn(map);
+        }
+        popup.options.autoPan = true;
+        popup.options.keepInView = true;
+        popup.options.autoPanPadding = [60, 60];
 
+        // CREATE A POPUP SIDEBAR
+        let sidebar = document.getElementById("sidebar");
+        sidebar.onclick = hideSidebar; 
 
+        function ShowSidebar(e) {
+            console.log(e); 
+            sidebar.innerHTML = e.target.options.sidebarText;
+            sidebar.style.display = "block";
+        }
+        function hideSidebar() {
+            sidebar.style.display = "none";
+        }
+        const circle2 = L.circle([51.482576, -0.08176], {
+            color: 'green',
+            fillColor: 'green',
+            fillOpacity: 0.5,
+            radius: 500,
+            sidebarText: "<div>Hello!!</div>"
+        }).addTo(map).on('click', ShowSidebar);
 
-	// ADD A CLICK EVENT TO THE MAP
-	const popup = L.popup();
-	map.on('click', MapClick);
-	function MapClick(e) {
-		popup.setLatLng(e.latlng)
-			 .setContent(`${e.latlng.toString()}`)
-			 .openOn(map);
-	}
-	popup.options.autoPan = true;
-	popup.options.keepInView = true;
-	popup.options.autoPanPadding = [60, 60];
-
-	// CREATE A POPUP SIDEBAR
-	let sidebar = document.getElementById("sidebar");
-	sidebar.onclick = hideSidebar; 
-
-	function ShowSidebar(e) {
-		console.log(e); 
-		sidebar.innerHTML = e.target.options.sidebarText;
-		sidebar.style.display = "block";
-	}
-	function hideSidebar() {
-		sidebar.style.display = "none";
-	}
-	const circle2 = L.circle([51.482576, -0.08176], {
-		color: 'green',
-		fillColor: 'green',
-		fillOpacity: 0.5,
-		radius: 500,
-		sidebarText: "<div>Hello!!</div>"
-	}).addTo(map).on('click', ShowSidebar);
-
-    // LOAD EXTERNAL DATA
-    fetch('data/markers.json')
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(location => {
-            let popupContent = `<div><p>${location.popup}</p>`;
-            if (location.image) {
-				popupContent += `<img src="leaflet/images/${location.image}" alt="${location.popup}">`;
-            }
-            popupContent += `</div>`;
-			L.marker([location.lat, location.lng]).addTo(map).bindPopup(popupContent, {
-				autoPan: true,
-				keepInView: true,
-				autoPanPadding: [60, 60],
-				className: 'vending-popup'
-			});
-        });
-    })
-    .catch(error => console.error('Error loading markers:', error));
+        // LOAD EXTERNAL DATA
+        fetch('data/markers.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(location => {
+                let popupContent = `<div><p>${location.popup}</p>`;
+                if (location.image) {
+                    popupContent += `<img src="leaflet/images/${location.image}" alt="${location.popup}">`;
+                }
+                popupContent += `</div>`;
+                L.marker([location.lat, location.lng]).addTo(map).bindPopup(popupContent, {
+                    autoPan: true,
+                    keepInView: true,
+                    autoPanPadding: [60, 60],
+                    className: 'vending-popup'
+                });
+            });
+        })
+        .catch(error => console.error('Error loading markers:', error));
     </script>
 </body>
 </html>
